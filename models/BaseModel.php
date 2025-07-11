@@ -1,5 +1,6 @@
 <?php
-require_once '../config/Database.php';
+require_once __DIR__ . '/../config/path.php';
+require_once ROOT_PATH . '/config/database.php';
 
 abstract class BaseModel {
     protected $db;
