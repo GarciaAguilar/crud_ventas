@@ -1,0 +1,21 @@
+/* Estilos para impresión de tablas y tarjetas */
+@media print {
+    .card {
+        border: 1px solid #000 !important;
+        box-shadow: none !important;
+    }
+    
+    .card-header {
+        background-color: #f8f9fa !important;
+        color: #000 !important;
+        border-bottom: 1px solid #000 !important;
+    }
+    
+    .table {
+        border: 1px solid #000 !important;
+    }
+    
+    .table th, .table td {
+        border: 1px solid #000 !important;
+    }
+}

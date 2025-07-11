@@ -1,5 +1,8 @@
 <?php include '../../includes/header.php'; ?>
 
+<!-- Estilos adicionales para tablas -->
+<link href="/Crud_Ventas/public/assets/css/table.css" rel="stylesheet">
+
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-12">
@@ -143,28 +146,5 @@
         </div>
     </div>
 </div>
-
-<style>
-@media print {
-    .card {
-        border: 1px solid #000 !important;
-        box-shadow: none !important;
-    }
-    
-    .card-header {
-        background-color: #f8f9fa !important;
-        color: #000 !important;
-        border-bottom: 1px solid #000 !important;
-    }
-    
-    .table {
-        border: 1px solid #000 !important;
-    }
-    
-    .table th, .table td {
-        border: 1px solid #000 !important;
-    }
-}
-</style>
 
 <?php include '../../includes/footer.php'; ?>

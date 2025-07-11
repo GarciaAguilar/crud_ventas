@@ -1,5 +1,8 @@
 <?php include '../../includes/header.php'; ?>
 
+<!-- Estilos específicos para pago exitoso -->
+<link href="/Crud_Ventas/public/assets/css/pago_exitoso.css" rel="stylesheet">
+
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -80,60 +83,11 @@
     </div>
 </div>
 
+<!-- JavaScript específico para pago exitoso -->
 <script>
-let countdown = 3;
-let autoOpenTimer;
-let countdownTimer;
-
-function startAutoOpen() {
-    const countdownElement = document.getElementById('countdown');
-    const alertElement = document.getElementById('autoOpenAlert');
-    
-    countdownTimer = setInterval(() => {
-        countdown--;
-        countdownElement.textContent = countdown;
-        
-        if (countdown <= 0) {
-            clearInterval(countdownTimer);
-            alertElement.style.display = 'none';
-            // Abrir la factura PDF
-            window.open('/Crud_Ventas/public/facturas/?action=generar_pdf&id=<?= $venta['id_venta'] ?>', '_blank');
-        }
-    }, 1000);
-}
-
-function cancelAutoOpen() {
-    clearInterval(countdownTimer);
-    document.getElementById('autoOpenAlert').style.display = 'none';
-}
-
-// Iniciar el countdown cuando la página se carga
-document.addEventListener('DOMContentLoaded', startAutoOpen);
+// Establecer la URL de la factura para el JavaScript
+window.facturaUrl = '/Crud_Ventas/public/facturas/?action=generar_pdf&id=<?= $venta['id_venta'] ?>';
 </script>
-
-<style>
-.card-header h3 {
-    margin: 0;
-}
-
-.alert-success {
-    border: none;
-    border-radius: 10px;
-}
-
-.btn-lg {
-    padding: 12px 24px;
-    font-size: 1.1rem;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.card {
-    animation: fadeIn 0.5s ease-out;
-}
-</style>
+<script src="/Crud_Ventas/public/assets/js/pago_exitoso.js"></script>
 
 <?php include '../../includes/footer.php'; ?>

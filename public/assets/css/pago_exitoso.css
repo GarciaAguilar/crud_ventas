@@ -1,0 +1,29 @@
+/* Estilos para la página de pago exitoso */
+.card-header h3 {
+    margin: 0;
+}
+
+.alert-success {
+    border: none;
+    border-radius: 10px;
+}
+
+.btn-lg {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+.card {
+    animation: fadeIn 0.5s ease-out;
+}
