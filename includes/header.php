@@ -30,10 +30,9 @@ if (session_status() == PHP_SESSION_NONE) {
             <strong>Tienda Electrónica</strong>
         </div>
         <a href="/Crud_Ventas/views/dashboard.php"><i class="bi bi-house-door-fill me-2"></i>Inicio</a>
-        <!-- Ejemplo en header.php -->
-        <a href="/Crud_Ventas/views/inventario.php">Inventario</a>
+        <a href="/Crud_Ventas/views/inventario.php"><i class="bi bi-box-seam-fill me-2"></i>Inventario</a>
         <a href="/Crud_Ventas/public/ventas/index.php"><i class="bi bi-cart-fill me-2"></i>Ventas</a>
-         <a href="/Crud_Ventas/public/facturas/">Facturas</a>
+        <a href="/Crud_Ventas/public/facturas/"><i class="bi bi-receipt-cutoff me-2"></i>Facturas</a>
     </div>
     <!-- Contenido principal -->
     <div class="content">

@@ -235,6 +235,17 @@ document.addEventListener('DOMContentLoaded', function() {
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if(result.isConfirmed) {
+                // Mostrar mensaje de procesamiento
+                Swal.fire({
+                    title: 'Procesando pago...',
+                    text: 'Por favor espere',
+                    allowOutsideClick: false,
+                    showConfirmButton: false,
+                    willOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+                
                 this.submit();
             }
         });

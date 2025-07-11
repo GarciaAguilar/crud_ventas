@@ -5,14 +5,17 @@ require_once realpath(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'config' . DIREC
 try {
     requireFrom(MODELS_PATH, 'Venta.php');
     requireFrom(MODELS_PATH, 'Inventario.php');
+    requireFrom(MODELS_PATH, 'Factura.php');
 
 class VentaController {
     private $modelVenta;
     private $modelInventario;
+    private $modelFactura;
 
     public function __construct() {
         $this->modelVenta = new Venta();
         $this->modelInventario = new Inventario();
+        $this->modelFactura = new Factura();
     }
 
     public function index() {
@@ -28,6 +31,12 @@ class VentaController {
             $idVenta = $this->modelVenta->crearVenta($idCliente, $productos);
             
             if($idVenta) {
+                // Generar factura automáticamente
+                $idFactura = $this->modelFactura->crear($idVenta);
+                if(!$idFactura) {
+                    error_log("Advertencia: No se pudo generar la factura para la venta ID: $idVenta");
+                }
+                
                 $_SESSION['success'] = 'Venta registrada correctamente. ID: ' . $idVenta;
                 header('Location: /Crud_Ventas/views/ventas/detalle.php?id=' . $idVenta);
                 exit();
@@ -50,6 +59,26 @@ class VentaController {
             exit();
         }
         require_once VIEWS_PATH . '/ventas/detalle.php';
+    }
+
+    public function pagoExitoso() {
+        $idVenta = $_GET['id'] ?? null;
+        if (!$idVenta) {
+            $_SESSION['error'] = 'Venta no encontrada';
+            header('Location: /Crud_Ventas/public/ventas/');
+            exit();
+        }
+        
+        $venta = $this->modelVenta->obtenerConDetalles($idVenta);
+        $factura = $this->modelFactura->obtenerPorVenta($idVenta);
+        
+        if (!$venta || !$factura) {
+            $_SESSION['error'] = 'No se encontraron los datos de la venta o factura';
+            header('Location: /Crud_Ventas/public/ventas/');
+            exit();
+        }
+        
+        require_once VIEWS_PATH . '/ventas/pago_exitoso.php';
     }
 
     public function procesarPago() {
@@ -82,8 +111,16 @@ class VentaController {
                     throw new Exception("Error al registrar el pago");
                 }
                 
+                // 3. Generar factura automáticamente
+                $idFactura = $this->modelFactura->crear($idVenta);
+                if(!$idFactura) {
+                    // Log del error pero no fallar la venta
+                    error_log("Advertencia: No se pudo generar la factura para la venta ID: $idVenta");
+                }
+                
                 $_SESSION['success'] = 'Venta registrada y pago procesado correctamente';
-                header('Location: /Crud_Ventas/public/ventas/');
+                $_SESSION['mostrar_factura'] = $idVenta; // Guardar ID para mostrar la factura
+                header('Location: /Crud_Ventas/public/ventas/?action=pago_exitoso&id=' . $idVenta);
                 exit();
                 
             } catch(Exception $e) {

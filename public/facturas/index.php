@@ -3,27 +3,23 @@
 require_once realpath(dirname(__DIR__, 2)) . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'path.php';
 
 try {
-    requireFrom(CONTROLLERS_PATH, 'VentaController.php');
+    requireFrom(CONTROLLERS_PATH, 'FacturaController.php');
     
-    $controller = new VentaController();
+    $controller = new FacturaController();
 
     if (isset($_GET['action'])) {
         $action = $_GET['action'];
         
         switch($action) {
-            case 'crear':
-                $controller->crear();
-                break;
-            case 'detalle':
+            case 'generar_pdf':
                 if (isset($_GET['id'])) {
-                    $controller->detalle($_GET['id']);
+                    $controller->generarPdf($_GET['id']);
                 }
                 break;
-            case 'pago_exitoso':
-                $controller->pagoExitoso();
-                break;
-            case 'procesar_pago':
-                $controller->procesarPago();
+            case 'anular':
+                if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
+                    $controller->anular($_POST['id']);
+                }
                 break;
             default:
                 $controller->index();
