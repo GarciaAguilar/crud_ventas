@@ -1,4 +1,10 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
+<html lang="es";DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -26,7 +32,7 @@
         <a href="/Crud_Ventas/views/dashboard.php"><i class="bi bi-house-door-fill me-2"></i>Inicio</a>
         <!-- Ejemplo en header.php -->
         <a href="/Crud_Ventas/views/inventario.php">Inventario</a>
-        <a href="ventas.php"><i class="bi bi-house-door-fill me-2"></i>Ventas</a>
+        <a href="/Crud_Ventas/public/ventas/index.php"><i class="bi bi-cart-fill me-2"></i>Ventas</a>
          <a href="/Crud_Ventas/public/facturas/">Facturas</a>
     </div>
     <!-- Contenido principal -->

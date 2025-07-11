@@ -13,12 +13,12 @@
         <?php unset($_SESSION['error']); ?>
     <?php endif; ?>
     
-    <a href="ventas/crear" class="btn btn-primary mb-3">
+    <a href="/Crud_Ventas/public/ventas/?action=crear" class="btn btn-primary mb-3">
         <i class="bi bi-plus-circle"></i> Nueva Venta
     </a>
     
     <table class="table table-striped">
-        <thead>
+        <thead class="table-dark">
             <tr>
                 <th>ID</th>
                 <th>Fecha</th>
@@ -29,28 +29,34 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach($ventas as $venta): ?>
-            <tr>
-                <td><?= $venta['id_venta'] ?></td>
-                <td><?= date('d/m/Y H:i', strtotime($venta['fecha_venta'])) ?></td>
-                <td><?= htmlspecialchars($venta['nombre_cliente'] ?? 'Consumidor Final') ?></td>
-                <td>$<?= number_format($venta['total'], 2) ?></td>
-                <td>
-                    <?php if($venta['estado'] == 1): ?>
-                        <span class="badge bg-warning">Pendiente Pago</span>
-                    <?php elseif($venta['estado'] == 2): ?>
-                        <span class="badge bg-success">Completada</span>
-                    <?php else: ?>
-                        <span class="badge bg-danger">Anulada</span>
-                    <?php endif; ?>
-                </td>
-                <td>
-                    <a href="ventas/detalle/<?= $venta['id_venta'] ?>" class="btn btn-sm btn-info">
-                        <i class="bi bi-eye"></i> Ver
-                    </a>
-                </td>
-            </tr>
-            <?php endforeach; ?>
+            <?php if(isset($ventas) && is_array($ventas) && count($ventas) > 0): ?>
+                <?php foreach($ventas as $venta): ?>
+                <tr>
+                    <td><?= $venta['id_venta'] ?></td>
+                    <td><?= date('d/m/Y H:i', strtotime($venta['fecha_venta'])) ?></td>
+                    <td><?= htmlspecialchars($venta['nombre_cliente'] ?? 'Consumidor Final') ?></td>
+                    <td>$<?= number_format($venta['total'], 2) ?></td>
+                    <td>
+                        <?php if($venta['estado'] == 1): ?>
+                            <span class="badge bg-warning">Pendiente Pago</span>
+                        <?php elseif($venta['estado'] == 2): ?>
+                            <span class="badge bg-success">Completada</span>
+                        <?php else: ?>
+                            <span class="badge bg-danger">Anulada</span>
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <a href="/Crud_Ventas/public/ventas/?action=detalle&id=<?= $venta['id_venta'] ?>" class="btn btn-sm btn-info">
+                            <i class="bi bi-eye"></i> Ver
+                        </a>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="6" class="text-center">No hay ventas registradas</td>
+                </tr>
+            <?php endif; ?>
         </tbody>
     </table>
 </div>

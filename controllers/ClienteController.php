@@ -1,19 +1,51 @@
 <?php
-require_once __DIR__ . '/../config/path.php';
-require_once MODELS_PATH . '/Cliente.php';
+require_once realpath(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'path.php';
 
-class ClienteController {
-    private $model;
+try {
+    requireFrom(MODELS_PATH, 'Cliente.php');
 
-    public function __construct() {
-        $this->model = new Cliente();
-    }
+    class ClienteController {
+        private $model;
+
+        public function __construct() {
+            $this->model = new Cliente();
+        }
 
     public function buscar() {
-        $termino = $_GET['termino'] ?? '';
-        $clientes = $this->model->buscar($termino);
         header('Content-Type: application/json');
-        echo json_encode($clientes);
+        
+        $termino = $_GET['termino'] ?? '';
+        
+        if(empty($termino)) {
+            echo json_encode([]);
+            return;
+        }
+        
+        try {
+            $clientes = $this->model->buscar($termino);
+            echo json_encode($clientes);
+        } catch(Exception $e) {
+            echo json_encode(['error' => $e->getMessage()]);
+        }
     }
+    }
+
+    // Manejo de acciones
+    if (isset($_GET['action'])) {
+        $controller = new ClienteController();
+        
+        switch ($_GET['action']) {
+            case 'buscar':
+                $controller->buscar();
+                break;
+            default:
+                echo json_encode(['error' => 'Acción no válida']);
+                break;
+        }
+    } else {
+        echo json_encode(['error' => 'No se especificó ninguna acción']);
+    }
+} catch (Exception $e) {
+    echo json_encode(['error' => $e->getMessage()]);
 }
 ?>
