@@ -1,4 +1,3 @@
-// JavaScript para la página de pago exitoso
 let countdown = 3;
 let autoOpenTimer;
 let countdownTimer;

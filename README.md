@@ -128,7 +128,6 @@ Estado: Activo
 - Vista general del sistema con navegación principal
 
 ### 2. Gestión de Inventario
-- **URL:** `/Crud_Ventas/views/inventario.php`
 - **Funciones:**
   - Ver lista de productos
   - Agregar nuevos productos
@@ -136,17 +135,15 @@ Estado: Activo
   - Control de stock
 
 ### 3. Proceso de Ventas
-- **URL:** `/Crud_Ventas/public/ventas/`
 - **Flujo completo:**
   1. Crear nueva venta
-  2. Seleccionar cliente (opcional)
+  2. Seleccionar cliente
   3. Agregar productos al carrito
   4. Calcular totales automáticamente
   5. Procesar pago
   6. Generar factura automáticamente
 
 ### 4. Sistema de Facturación
-- **URL:** `/Crud_Ventas/public/facturas/`
 - **Características:**
   - Numeración automática: FAC-001-2025, FAC-002-2025, etc.
   - Reinicio de numeración cada año
