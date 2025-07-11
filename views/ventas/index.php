@@ -20,7 +20,6 @@
     <table class="table table-striped">
         <thead class="table-dark">
             <tr>
-                <th>ID</th>
                 <th>Fecha</th>
                 <th>Cliente</th>
                 <th>Total</th>
@@ -32,7 +31,6 @@
             <?php if(isset($ventas) && is_array($ventas) && count($ventas) > 0): ?>
                 <?php foreach($ventas as $venta): ?>
                 <tr>
-                    <td><?= $venta['id_venta'] ?></td>
                     <td><?= date('d/m/Y H:i', strtotime($venta['fecha_venta'])) ?></td>
                     <td><?= htmlspecialchars($venta['nombre_cliente'] ?? 'Consumidor Final') ?></td>
                     <td>$<?= number_format($venta['total'], 2) ?></td>
@@ -54,7 +52,7 @@
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="6" class="text-center">No hay ventas registradas</td>
+                    <td colspan="5" class="text-center">No hay ventas registradas</td>
                 </tr>
             <?php endif; ?>
         </tbody>

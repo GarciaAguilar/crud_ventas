@@ -56,5 +56,4 @@
     </div>
 </div>
 
-<script src="../../public/assets/js/facturas.js"></script>
 <?php include '../../includes/footer.php'; ?>

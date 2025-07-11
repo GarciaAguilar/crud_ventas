@@ -10,7 +10,7 @@ class Factura extends BaseModel {
                   FROM facturacion f
                   JOIN ventas v ON f.id_venta = v.id_venta
                   LEFT JOIN clientes c ON v.id_cliente = c.id_cliente
-                  ORDER BY f.fecha_emision DESC";
+                  ORDER BY f.id_factura DESC";
         
         $stmt = $this->db->prepare($query);
         $stmt->execute();
