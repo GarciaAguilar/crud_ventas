@@ -1,4 +1,4 @@
-<?php include '../../includes/header.php'; ?>
+<?php include '../includes/header.php'; ?>
 
 <div class="container mt-4">
     <h2><i class="bi bi-box-seam"></i> Gestión de Inventario</h2>
@@ -103,5 +103,5 @@
     </div>
 </div>
 
-<script src="../../public/assets/js/inventario.js"></script>
-<?php include '../../includes/footer.php'; ?>
+<script src="../public/assets/js/inventario.js"></script>
+<?php include '../includes/footer.php'; ?>

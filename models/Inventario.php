@@ -62,5 +62,12 @@ class Inventario extends BaseModel {
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
+
+      public function getProductosDisponibles() {
+        $query = "SELECT * FROM {$this->table} WHERE stock > 0 AND estado = 1";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>

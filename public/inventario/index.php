@@ -15,14 +15,14 @@ try {
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $controller->crear();
                 } else {
-                    requireFrom(VIEWS_PATH, 'inventario/crear.php');
+                    requireFrom(VIEWS_PATH, 'inventario.php');
                 }
                 break;
             case 'editar':
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $controller->editar();
                 } else {
-                    requireFrom(VIEWS_PATH, 'inventario/editar.php');
+                    requireFrom(VIEWS_PATH, 'inventario.php');
                 }
                 break;
             case 'eliminar':
@@ -38,7 +38,7 @@ try {
                 break;
         }
     } else {
-        requireFrom(VIEWS_PATH, 'inventario/index.php');
+        requireFrom(VIEWS_PATH, 'inventario.php');
     }
 } catch (Exception $e) {
     die("Error: " . $e->getMessage());
