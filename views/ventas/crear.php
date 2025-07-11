@@ -127,7 +127,7 @@
                         <input type="text" class="form-control" id="modal_total" readonly>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Monto Recibido:</label>
+                        <label class="form-label">Monto Recibido(*):</label>
                         <input type="number" class="form-control" id="modal_monto_recibido" name="monto_recibido" step="0.01" min="0" required>
                     </div>
                     <div class="mb-3">

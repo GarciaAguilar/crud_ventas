@@ -7,9 +7,9 @@
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalProducto">
             <i class="bi bi-plus-circle"></i> Nuevo Producto
         </button>
-        <div class="input-group" style="width: 300px;">
-            <input type="text" id="buscarProducto" class="form-control" placeholder="Buscar producto...">
-            <button class="btn btn-outline-secondary" type="button" id="btnBuscar">
+        <div class="input-group" style="width: 350px;">
+            <input type="text" id="buscarProducto" class="form-control" placeholder="Buscar por nombre, categoría o ID...">
+            <button class="btn btn-outline-secondary" type="button" id="btnBuscar" title="Búsqueda avanzada">
                 <i class="bi bi-search"></i>
             </button>
         </div>
@@ -19,7 +19,7 @@
         <table class="table table-striped table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>ID</th>
+                    <th>N°</th>
                     <th>Nombre</th>
                     <th>Precio</th>
                     <th>Stock</th>

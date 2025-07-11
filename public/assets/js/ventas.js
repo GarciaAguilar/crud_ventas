@@ -182,6 +182,26 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
+        // Validar que se haya seleccionado un cliente (OBLIGATORIO)
+        const clienteId = document.getElementById('id_cliente').value;
+        if(!clienteId || clienteId === '') {
+            Swal.fire({
+                title: 'Cliente Obligatorio',
+                text: 'Debe seleccionar un cliente para procesar la venta. Esta acción es obligatoria.',
+                icon: 'error',
+                confirmButtonText: 'Entendido',
+                confirmButtonColor: '#dc3545'
+            }).then(() => {
+                // Enfocar el campo de búsqueda de cliente
+                document.getElementById('buscarCliente').focus();
+            });
+            return;
+        }
+        
+        procederConVenta();
+    });
+    
+    function procederConVenta() {
         // Calcular con 13% de IVA
         const iva = subtotal * 0.13;
         const total = subtotal + iva;
@@ -200,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Mostrar modal
         modalPago.show();
-    });
+    }
     
     // Calcular cambio en tiempo real
     modalMontoRecibido.addEventListener('input', function() {
