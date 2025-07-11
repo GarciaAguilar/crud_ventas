@@ -58,7 +58,7 @@ Crud_Ventas/
 2. **Configurar la base de datos**
    - Abrir phpMyAdmin (http://localhost/phpmyadmin)
    - Crear una nueva base de datos llamada `crud_ventas`
-   - Importar el archivo SQL que se encuentra dentro de la carpeta config llamado `crud_ventas.sql`
+   - Importar el archivo SQL que se encuentra dentro de la carpeta config, inclui 2 archivos sql uno generado con navicat para mariadb y el otro con phpmyadmin, ambos contienen la misma información
 
 3. **Configurar conexión de base de datos**
    ```php
