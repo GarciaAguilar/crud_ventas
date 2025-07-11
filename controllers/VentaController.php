@@ -46,7 +46,7 @@ class VentaController {
         $venta = $this->modelVenta->obtenerConDetalles($idVenta);
         if(!$venta) {
             $_SESSION['error'] = 'Venta no encontrada';
-            header('Location: /Crud_Ventas/views/ventas/index.php');
+            header('Location: /Crud_Ventas/public/ventas/');
             exit();
         }
         require_once VIEWS_PATH . '/ventas/detalle.php';
