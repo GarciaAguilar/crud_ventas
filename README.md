@@ -113,11 +113,11 @@ Estado: Activo
 
 ### Clientes que estan en la bd para seleeccionar en venta
 
-Ana Torres
-Pedro Sánchez
-María López
-Carlos Ruiz
-Lucía Mendoza
+- Ana Torres
+- Pedro Sánchez
+- María López
+- Carlos Ruiz
+- Lucía Mendoza
 
 
 
