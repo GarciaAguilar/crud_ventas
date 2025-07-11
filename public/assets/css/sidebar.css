@@ -1,0 +1,35 @@
+ body {
+     display: flex;
+ }
+
+ .sidebar {
+     min-width: 250px;
+     max-width: 250px;
+     height: 100vh;
+     background-color: #0b345a;
+     padding-top: 1rem;
+ }
+
+ .sidebar a {
+     color: white;
+     text-decoration: none;
+     padding: 10px 20px;
+     display: block;
+ }
+
+ .sidebar a:hover {
+     background-color: #1e5a8c;
+ }
+
+ .content {
+     flex-grow: 1;
+     padding: 2rem;
+     background-color: #f8f9fa;
+ }
+
+ .sidebar .logo {
+     text-align: center;
+     font-size: 1.5rem;
+     color: #f9b757;
+     margin-bottom: 2rem;
+ }
