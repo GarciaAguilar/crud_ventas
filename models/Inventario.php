@@ -9,30 +9,40 @@ class Inventario extends BaseModel {
     }
 
     public function crear($data) {
-        $query = "INSERT INTO {$this->table} 
-                 (nombre, descripcion, precio, costo, stock, categoria, proveedor, estado) 
-                 VALUES (:nombre, :descripcion, :precio, :costo, :stock, :categoria, :proveedor, :estado)";
-        
-        $stmt = $this->db->prepare($query);
-        return $stmt->execute($data);
+        try {
+            $query = "INSERT INTO {$this->table} 
+                     (nombre, descripcion, precio, costo, stock, categoria, proveedor, estado) 
+                     VALUES (:nombre, :descripcion, :precio, :costo, :stock, :categoria, :proveedor, :estado)";
+            
+            $stmt = $this->db->prepare($query);
+            return $stmt->execute($data);
+        } catch(PDOException $e) {
+            error_log("Error creando producto: " . $e->getMessage());
+            return false;
+        }
     }
 
     public function actualizar($id, $data) {
-        $query = "UPDATE {$this->table} 
-                  SET nombre = :nombre, 
-                      descripcion = :descripcion, 
-                      precio = :precio, 
-                      costo = :costo, 
-                      stock = :stock, 
-                      categoria = :categoria, 
-                      proveedor = :proveedor, 
-                      estado = :estado,
-                      fecha_ingreso = CURRENT_TIMESTAMP
-                  WHERE id_producto = :id";
-        
-        $data['id'] = $id;
-        $stmt = $this->db->prepare($query);
-        return $stmt->execute($data);
+        try {
+            $query = "UPDATE {$this->table} 
+                      SET nombre = :nombre, 
+                          descripcion = :descripcion, 
+                          precio = :precio, 
+                          costo = :costo, 
+                          stock = :stock, 
+                          categoria = :categoria, 
+                          proveedor = :proveedor, 
+                          estado = :estado,
+                          fecha_ingreso = CURRENT_TIMESTAMP
+                      WHERE id_producto = :id";
+            
+            $data['id'] = $id;
+            $stmt = $this->db->prepare($query);
+            return $stmt->execute($data);
+        } catch(PDOException $e) {
+            error_log("Error actualizando producto: " . $e->getMessage());
+            return false;
+        }
     }
 
     public function buscar($termino) {

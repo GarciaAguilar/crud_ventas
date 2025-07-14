@@ -22,49 +22,87 @@ try {
 
         public function crear()
         {
-            $data = [
-                'nombre' => $_POST['nombre'],
-                'descripcion' => $_POST['descripcion'],
-                'precio' => $_POST['precio'],
-                'costo' => $_POST['costo'],
-                'stock' => $_POST['stock'],
-                'categoria' => $_POST['categoria'],
-                'proveedor' => $_POST['proveedor'],
-                'estado' => $_POST['estado']
-            ];
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                // Validar datos requeridos
+                if (empty($_POST['nombre']) || empty($_POST['precio']) || empty($_POST['stock'])) {
+                    echo json_encode([
+                        'success' => false,
+                        'message' => 'Faltan campos obligatorios: nombre, precio y stock'
+                    ]);
+                    return;
+                }
 
-            $result = $this->model->crear($data);
-            echo json_encode(['success' => $result]);
+                $data = [
+                    'nombre' => $_POST['nombre'],
+                    'descripcion' => $_POST['descripcion'] ?? '',
+                    'precio' => $_POST['precio'],
+                    'costo' => $_POST['costo'] ?? 0,
+                    'stock' => $_POST['stock'],
+                    'categoria' => $_POST['categoria'] ?? '',
+                    'proveedor' => $_POST['proveedor'] ?? '',
+                    'estado' => $_POST['estado'] ?? 1
+                ];
+
+                $result = $this->model->crear($data);
+                echo json_encode([
+                    'success' => $result,
+                    'message' => $result ? 'Producto creado correctamente' : 'Error al crear el producto'
+                ]);
+            } else {
+                echo json_encode(['error' => 'Método no permitido']);
+            }
         }
 
         public function editar()
         {
-            if (isset($_GET['id'])) {
+            if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
                 // Obtener producto para editar
                 $producto = $this->model->getById($_GET['id']);
-                echo json_encode($producto);
+                if ($producto) {
+                    echo json_encode($producto);
+                } else {
+                    echo json_encode(['error' => 'Producto no encontrado']);
+                }
             } else {
-                // Actualizar producto
+                echo json_encode(['error' => 'Método no permitido o ID faltante']);
+            }
+        }
+
+        public function actualizar()
+        {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $data = [
-                    'nombre' => $_POST['nombre'],
-                    'descripcion' => $_POST['descripcion'],
-                    'precio' => $_POST['precio'],
-                    'costo' => $_POST['costo'],
-                    'stock' => $_POST['stock'],
-                    'categoria' => $_POST['categoria'],
-                    'proveedor' => $_POST['proveedor'],
-                    'estado' => $_POST['estado']
+                    'nombre' => $_POST['nombre'] ?? '',
+                    'descripcion' => $_POST['descripcion'] ?? '',
+                    'precio' => $_POST['precio'] ?? 0,
+                    'costo' => $_POST['costo'] ?? 0,
+                    'stock' => $_POST['stock'] ?? 0,
+                    'categoria' => $_POST['categoria'] ?? '',
+                    'proveedor' => $_POST['proveedor'] ?? '',
+                    'estado' => $_POST['estado'] ?? 1
                 ];
 
                 $result = $this->model->actualizar($_POST['id'], $data);
-                echo json_encode(['success' => $result]);
+                echo json_encode([
+                    'success' => $result,
+                    'message' => $result ? 'Producto actualizado correctamente' : 'Error al actualizar el producto'
+                ]);
+            } else {
+                echo json_encode(['error' => 'Método no permitido']);
             }
         }
 
         public function eliminar()
         {
-            $result = $this->model->delete($_POST['id']);
-            echo json_encode(['success' => $result]);
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
+                $result = $this->model->delete($_POST['id']);
+                echo json_encode([
+                    'success' => $result,
+                    'message' => $result ? 'Producto eliminado correctamente' : 'Error al eliminar el producto'
+                ]);
+            } else {
+                echo json_encode(['error' => 'Método no permitido o ID faltante']);
+            }
         }
 
         public function buscar()
@@ -87,6 +125,9 @@ try {
                 break;
             case 'editar':
                 $controller->editar();
+                break;
+            case 'actualizar':
+                $controller->actualizar();
                 break;
             case 'eliminar':
                 $controller->eliminar();

@@ -1,7 +1,7 @@
 <?php include '../../includes/header.php'; ?>
 
 <!-- Estilos adicionales para tablas -->
-<link href="/Crud_Ventas/public/assets/css/table.css" rel="stylesheet">
+<link href="<?= asset('css/table.css') ?>" rel="stylesheet">
 
 <div class="container mt-4">
     <div class="row">
@@ -9,7 +9,7 @@
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2><i class="bi bi-receipt"></i> Detalle de Venta #<?= $venta['id_venta'] ?></h2>
                 <div>
-                    <a href="/Crud_Ventas/public/ventas/" class="btn btn-secondary">
+                    <a href="<?= VENTAS_URL ?>" class="btn btn-secondary">
                         <i class="bi bi-arrow-left"></i> Volver al Listado
                     </a>
                 </div>

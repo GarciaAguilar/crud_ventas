@@ -13,7 +13,7 @@
         <?php unset($_SESSION['error']); ?>
     <?php endif; ?>
     
-    <a href="/Crud_Ventas/public/ventas/?action=crear" class="btn btn-primary mb-3">
+    <a href="<?= VENTAS_URL ?>?action=crear" class="btn btn-primary mb-3">
         <i class="bi bi-plus-circle"></i> Nueva Venta
     </a>
     
@@ -44,7 +44,7 @@
                         <?php endif; ?>
                     </td>
                     <td>
-                        <a href="/Crud_Ventas/public/ventas/?action=detalle&id=<?= $venta['id_venta'] ?>" class="btn btn-sm btn-info">
+                        <a href="<?= VENTAS_URL ?>?action=detalle&id=<?= $venta['id_venta'] ?>" class="btn btn-sm btn-info">
                             <i class="bi bi-eye"></i> Ver
                         </a>
                     </td>

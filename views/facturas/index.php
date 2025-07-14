@@ -39,7 +39,7 @@
                             </span>
                         </td>
                         <td>
-                            <a href="/Crud_Ventas/public/facturas/?action=generar_pdf&id=<?= $factura['id_venta'] ?>" 
+                            <a href="<?= FACTURAS_URL ?>?action=generar_pdf&id=<?= $factura['id_venta'] ?>" 
                                class="btn btn-sm btn-primary" target="_blank">
                                 <i class="bi bi-file-earmark-pdf"></i> PDF
                             </a>

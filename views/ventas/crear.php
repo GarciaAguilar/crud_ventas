@@ -109,7 +109,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="formPago" action="/Crud_Ventas/public/ventas/?action=procesar_pago" method="POST">
+                <form id="formPago" action="<?= VENTAS_URL ?>?action=procesar_pago" method="POST">
                     <input type="hidden" name="id_cliente" id="modal_id_cliente">
                     <input type="hidden" name="productos" id="modal_productos">
                     <input type="hidden" name="cambio" id="modal_cambio_hidden">
@@ -146,5 +146,8 @@
     </div>
 </div>
 
+<script>
+    window.CONTROLLERS_URL = '<?= CONTROLLERS_URL ?>';
+</script>
 <script src="../../public/assets/js/ventas.js"></script>
 <?php include '../../includes/footer.php'; ?>

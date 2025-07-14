@@ -32,13 +32,33 @@ class Factura extends BaseModel {
     
     public function crear($idVenta) {
         try {
+            // Obtener datos de la venta para calcular totales
+            $queryVenta = "SELECT v.*, 
+                          SUM(dv.precio_unitario * dv.cantidad) as subtotal
+                          FROM ventas v
+                          LEFT JOIN detalles_venta dv ON v.id_venta = dv.id_venta
+                          WHERE v.id_venta = ?
+                          GROUP BY v.id_venta";
+            $stmtVenta = $this->db->prepare($queryVenta);
+            $stmtVenta->execute([$idVenta]);
+            $venta = $stmtVenta->fetch(PDO::FETCH_ASSOC);
+            
+            if (!$venta) {
+                throw new Exception("Venta no encontrada para generar factura");
+            }
+            
+            // Calcular totales
+            $subtotal = floatval($venta['subtotal'] ?? 0);
+            $impuestos = $subtotal * 0.13; // 13% IVA
+            $total = $subtotal + $impuestos;
+            
             // Generar número de factura único
             $numeroFactura = $this->generarNumeroFactura();
             
-            $query = "INSERT INTO facturacion (id_venta, numero_factura, fecha_emision, estado) 
-                      VALUES (?, ?, NOW(), 1)";
+            $query = "INSERT INTO facturacion (id_venta, numero_factura, fecha_emision, subtotal, impuestos, total, estado) 
+                      VALUES (?, ?, NOW(), ?, ?, ?, 1)";
             $stmt = $this->db->prepare($query);
-            $resultado = $stmt->execute([$idVenta, $numeroFactura]);
+            $resultado = $stmt->execute([$idVenta, $numeroFactura, $subtotal, $impuestos, $total]);
             
             if($resultado) {
                 return $this->db->lastInsertId();

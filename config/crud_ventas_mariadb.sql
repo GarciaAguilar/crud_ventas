@@ -11,7 +11,7 @@
  Target Server Version : 100432
  File Encoding         : 65001
 
- Date: 11/07/2025 16:42:39
+ Date: 14/07/2025 16:19:30
 */
 
 SET NAMES utf8mb4;
@@ -35,11 +35,11 @@ CREATE TABLE `clientes`  (
 -- ----------------------------
 -- Records of clientes
 -- ----------------------------
-INSERT INTO `clientes` VALUES (1, 'Ana Torres', 'Calle Primavera 45', '555-1111', 'ana.torres@email.com', '2025-07-11 09:00:20', 1);
-INSERT INTO `clientes` VALUES (2, 'Pedro Sánchez', 'Av. Central 789', '555-2222', 'pedro.sanchez@email.com', '2025-07-11 09:00:20', 1);
-INSERT INTO `clientes` VALUES (3, 'María López', 'Boulevard Norte 321', '555-3333', 'maria.lopez@email.com', '2025-07-11 09:00:20', 1);
-INSERT INTO `clientes` VALUES (4, 'Carlos Ruiz', 'Callejón del Arte 56', '555-4444', 'carlos.ruiz@email.com', '2025-07-11 09:00:20', 1);
-INSERT INTO `clientes` VALUES (5, 'Lucía Mendoza', 'Paseo de la Reforma 1001', '555-5555', 'lucia.mendoza@email.com', '2025-07-11 09:00:20', 1);
+INSERT INTO `clientes` VALUES (1, 'Ana Torres', 'Calle Primavera 45', '2555-1111', 'ana.torres@email.com', '2025-07-11 09:00:20', 1);
+INSERT INTO `clientes` VALUES (2, 'Pedro Sánchez', 'Av. Central 789', '2555-2222', 'pedro.sanchez@email.com', '2025-07-11 09:00:20', 1);
+INSERT INTO `clientes` VALUES (3, 'María López', 'Boulevard Norte 321', '2555-3333', 'maria.lopez@email.com', '2025-07-11 09:00:20', 1);
+INSERT INTO `clientes` VALUES (4, 'Carlos Ruiz', 'Callejón del Arte 56', '2555-4444', 'carlos.ruiz@email.com', '2025-07-11 09:00:20', 1);
+INSERT INTO `clientes` VALUES (5, 'Lucía Mendoza', 'Paseo de la Reforma 1001', '2555-5555', 'lucia.mendoza@email.com', '2025-07-11 09:00:20', 1);
 
 -- ----------------------------
 -- Table structure for detalles_venta
@@ -58,7 +58,7 @@ CREATE TABLE `detalles_venta`  (
   INDEX `id_producto`(`id_producto`) USING BTREE,
   CONSTRAINT `detalles_venta_ibfk_1` FOREIGN KEY (`id_venta`) REFERENCES `ventas` (`id_venta`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `detalles_venta_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `inventario` (`id_producto`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of detalles_venta
@@ -69,6 +69,7 @@ INSERT INTO `detalles_venta` VALUES (3, 2, 2, 2, 7599.00, 15198.00, '2025-07-11 
 INSERT INTO `detalles_venta` VALUES (4, 3, 5, 3, 1499.00, 4497.00, '2025-07-11 09:00:54');
 INSERT INTO `detalles_venta` VALUES (5, 4, 1, 1, 18999.00, 18999.00, '2025-07-11 09:00:54');
 INSERT INTO `detalles_venta` VALUES (6, 5, 4, 5, 699.00, 3495.00, '2025-07-11 09:00:54');
+INSERT INTO `detalles_venta` VALUES (7, 6, 1, 1, 18999.00, 18999.00, '2025-07-11 17:12:28');
 
 -- ----------------------------
 -- Table structure for facturacion
@@ -87,7 +88,7 @@ CREATE TABLE `facturacion`  (
   UNIQUE INDEX `numero_factura`(`numero_factura`) USING BTREE,
   INDEX `id_venta`(`id_venta`) USING BTREE,
   CONSTRAINT `facturacion_ibfk_1` FOREIGN KEY (`id_venta`) REFERENCES `ventas` (`id_venta`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of facturacion
@@ -97,6 +98,7 @@ INSERT INTO `facturacion` VALUES (2, 3, 'FAC-002-2025', '2025-07-11 09:01:12', 4
 INSERT INTO `facturacion` VALUES (3, 1, 'FAC-003-2025', '2025-07-11 09:01:12', 20298.00, 3247.68, 23545.68, 2);
 INSERT INTO `facturacion` VALUES (4, 5, 'FAC-004-2025', '2025-07-11 09:01:12', 3495.00, 559.20, 4054.20, 2);
 INSERT INTO `facturacion` VALUES (5, 4, 'FAC-005-2025', '2025-07-11 09:01:12', 18999.00, 3039.84, 22038.84, 2);
+INSERT INTO `facturacion` VALUES (6, 6, 'FAC-006-2025', '2025-07-11 17:12:28', 0.00, 0.00, 0.00, 1);
 
 -- ----------------------------
 -- Table structure for inventario
@@ -119,7 +121,7 @@ CREATE TABLE `inventario`  (
 -- ----------------------------
 -- Records of inventario
 -- ----------------------------
-INSERT INTO `inventario` VALUES (1, 'Laptop Elite', 'Laptop i7 16GB RAM 512GB SSD', 18999.00, 14500.00, 5, 'Tecnología', 'TecnoSuministros', '2025-07-11 15:03:56', 1);
+INSERT INTO `inventario` VALUES (1, 'Laptop Elite', 'Laptop i7 16GB RAM 512GB SSD', 18999.00, 14500.00, 4, 'Tecnología', 'TecnoSuministros', '2025-07-11 15:03:56', 1);
 INSERT INTO `inventario` VALUES (2, 'Monitor Curvo 32\"', 'Monitor QHD 144Hz', 7599.00, 5800.00, 8, 'Tecnología', 'VisualTech', '2025-07-11 09:00:32', 1);
 INSERT INTO `inventario` VALUES (3, 'Teclado Mecánico Pro', 'Teclado gaming switches azules', 1299.00, 850.00, 15, 'Periféricos', 'GamingGear', '2025-07-11 09:00:32', 1);
 INSERT INTO `inventario` VALUES (4, 'Mouse Inalámbrico', 'DPI ajustable hasta 16000', 699.00, 450.00, 0, 'Periféricos', 'TechAcc', '2025-07-11 11:55:31', 1);
@@ -143,7 +145,7 @@ CREATE TABLE `ventas`  (
   PRIMARY KEY (`id_venta`) USING BTREE,
   INDEX `id_cliente`(`id_cliente`) USING BTREE,
   CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ventas
@@ -153,5 +155,6 @@ INSERT INTO `ventas` VALUES (2, 2, '2025-07-11 09:00:44', 2, 15198.00, 2431.68, 
 INSERT INTO `ventas` VALUES (3, 3, '2025-07-11 09:00:44', 2, 4497.00, 719.52, 5216.52, 5500.00, 283.48);
 INSERT INTO `ventas` VALUES (4, 4, '2025-07-11 09:00:44', 2, 18999.00, 3039.84, 22038.84, 22038.84, 0.00);
 INSERT INTO `ventas` VALUES (5, 5, '2025-07-11 09:00:44', 2, 3495.00, 559.20, 4054.20, 4100.00, 45.80);
+INSERT INTO `ventas` VALUES (6, 1, '2025-07-11 17:12:28', 2, 18999.00, 2469.87, 21468.87, 21468.87, 0.00);
 
 SET FOREIGN_KEY_CHECKS = 1;

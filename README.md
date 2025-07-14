@@ -7,7 +7,26 @@
 - **Frontend:** HTML5, CSS3, Bootstrap 5, JavaScript
 - **Iconos:** Bootstrap Icons
 - **PDF:** FPDF Library
-- **Servidor:** XAMPP
+- **Servidor:** XAMPP/Apache + Docker
+
+## 🚀 Instalación Rápida con Docker (Recomendado)
+
+
+### Ejecutar
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/GarciaAguilar/crud_ventas.git
+cd crud_ventas
+
+# 2. Construir y ejecutar
+docker-compose up -d --build
+
+# 3. Acceder a la aplicación
+# Web: http://localhost:8080
+# Base de datos: localhost:3306 (usuario: root, password: root123)
+```
+
+
 
 ## 📦 Estructura del Proyecto
 
@@ -45,13 +64,13 @@ Crud_Ventas/
     └── footer.php
 ```
 
-## 🚀 Instalación y Configuración
+## �️ Instalación Manual (Alternativa)
 
-### Pasos de Instalación
+### Con XAMPP/WAMP:
 
 1. **Clonar o descargar el proyecto**
    ```bash
-   git clone [url-del-repositorio]
+   git clone https://github.com/GarciaAguilar/crud_ventas.git
    # O descargar y extraer en c:\xampp\htdocs\
    ```
 

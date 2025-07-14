@@ -38,11 +38,11 @@ class VentaController {
                 }
                 
                 $_SESSION['success'] = 'Venta registrada correctamente. ID: ' . $idVenta;
-                header('Location: /Crud_Ventas/views/ventas/detalle.php?id=' . $idVenta);
+                header('Location: ' . url('views/ventas/detalle.php?id=' . $idVenta));
                 exit();
             } else {
                 $_SESSION['error'] = 'Error al registrar la venta';
-                header('Location: /Crud_Ventas/views/ventas/crear.php');
+                header('Location: ' . url('views/ventas/crear.php'));
                 exit();
             }
         } else {
@@ -55,7 +55,7 @@ class VentaController {
         $venta = $this->modelVenta->obtenerConDetalles($idVenta);
         if(!$venta) {
             $_SESSION['error'] = 'Venta no encontrada';
-            header('Location: /Crud_Ventas/public/ventas/');
+            header('Location: ' . VENTAS_URL);
             exit();
         }
         require_once VIEWS_PATH . '/ventas/detalle.php';
@@ -63,9 +63,10 @@ class VentaController {
 
     public function pagoExitoso() {
         $idVenta = $_GET['id'] ?? null;
+        
         if (!$idVenta) {
             $_SESSION['error'] = 'Venta no encontrada';
-            header('Location: /Crud_Ventas/public/ventas/');
+            header('Location: ' . VENTAS_URL);
             exit();
         }
         
@@ -74,7 +75,7 @@ class VentaController {
         
         if (!$venta || !$factura) {
             $_SESSION['error'] = 'No se encontraron los datos de la venta o factura';
-            header('Location: /Crud_Ventas/public/ventas/');
+            header('Location: ' . VENTAS_URL);
             exit();
         }
         
@@ -120,7 +121,7 @@ class VentaController {
                 
                 $_SESSION['success'] = 'Venta registrada y pago procesado correctamente';
                 $_SESSION['mostrar_factura'] = $idVenta; // Guardar ID para mostrar la factura
-                header('Location: /Crud_Ventas/public/ventas/?action=pago_exitoso&id=' . $idVenta);
+                header('Location: ' . url('public/ventas/?action=pago_exitoso&id=' . $idVenta));
                 exit();
                 
             } catch(Exception $e) {
@@ -131,7 +132,7 @@ class VentaController {
             }
         } else {
             // Redirigir si no es POST
-            header('Location: /Crud_Ventas/public/ventas/?action=crear');
+            header('Location: ' . url('public/ventas/?action=crear'));
             exit();
         }
     }

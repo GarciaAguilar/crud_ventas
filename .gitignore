@@ -1,0 +1,26 @@
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos de IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Archivos de logs
+*.log
+logs/
+
+# Archivos temporales
+tmp/
+temp/
+cache/
+
+# Archivos de prueba y debug
+test_*.php
+check_db.php
+
+# Carpetas del proyecto original
+Crud_VentasD/

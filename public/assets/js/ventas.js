@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Buscar cliente
     buscarCliente.addEventListener('input', function() {
         if(this.value.length > 2) {
-            fetch(`/Crud_Ventas/controllers/ClienteController.php?action=buscar&termino=${encodeURIComponent(this.value)}`)
+            fetch(window.CONTROLLERS_URL + `ClienteController.php?action=buscar&termino=${encodeURIComponent(this.value)}`)
                 .then(response => response.json())
                 .then(data => {
                     resultadosCliente.innerHTML = '';

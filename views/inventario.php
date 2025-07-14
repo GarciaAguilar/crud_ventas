@@ -103,5 +103,10 @@
     </div>
 </div>
 
+<script>
+    // Configuración de URLs para JavaScript
+    window.CONTROLLERS_URL = '<?= CONTROLLERS_URL ?>';
+    window.ASSETS_URL = '<?= ASSETS_URL ?>';
+</script>
 <script src="../public/assets/js/inventario.js"></script>
 <?php include '../includes/footer.php'; ?>

@@ -1,7 +1,7 @@
 <?php include '../../includes/header.php'; ?>
 
 <!-- Estilos específicos para pago exitoso -->
-<link href="/Crud_Ventas/public/assets/css/pago_exitoso.css" rel="stylesheet">
+<link href="<?= asset('css/pago_exitoso.css') ?>" rel="stylesheet">
 
 <div class="container mt-4">
     <div class="row justify-content-center">
@@ -46,22 +46,22 @@
 
                     <!-- Acciones -->
                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                        <a href="/Crud_Ventas/public/facturas/?action=generar_pdf&id=<?= $venta['id_venta'] ?>" 
+                        <a href="<?= FACTURAS_URL ?>?action=generar_pdf&id=<?= $venta['id_venta'] ?>" 
                            class="btn btn-primary btn-lg me-md-2" target="_blank">
                             <i class="bi bi-file-earmark-pdf"></i> Ver Factura PDF
                         </a>
-                        <a href="/Crud_Ventas/public/ventas/?action=detalle&id=<?= $venta['id_venta'] ?>" 
+                        <a href="<?= VENTAS_URL ?>?action=detalle&id=<?= $venta['id_venta'] ?>" 
                            class="btn btn-info btn-lg me-md-2">
                             <i class="bi bi-eye"></i> Ver Detalle
                         </a>
-                        <a href="/Crud_Ventas/public/ventas/" 
+                        <a href="<?= VENTAS_URL ?>" 
                            class="btn btn-secondary btn-lg">
                             <i class="bi bi-list"></i> Ver Todas las Ventas
                         </a>
                     </div>
 
                     <div class="mt-4">
-                        <a href="/Crud_Ventas/public/ventas/?action=crear" 
+                        <a href="<?= VENTAS_URL ?>?action=crear" 
                            class="btn btn-outline-success">
                             <i class="bi bi-plus-circle"></i> Realizar Nueva Venta
                         </a>
@@ -86,8 +86,8 @@
 <!-- JavaScript específico para pago exitoso -->
 <script>
 // Establecer la URL de la factura para el JavaScript
-window.facturaUrl = '/Crud_Ventas/public/facturas/?action=generar_pdf&id=<?= $venta['id_venta'] ?>';
+window.facturaUrl = '<?= FACTURAS_URL ?>?action=generar_pdf&id=<?= $venta['id_venta'] ?>';
 </script>
-<script src="/Crud_Ventas/public/assets/js/pago_exitoso.js"></script>
+<script src="<?= asset('js/pago_exitoso.js') ?>"></script>
 
 <?php include '../../includes/footer.php'; ?>

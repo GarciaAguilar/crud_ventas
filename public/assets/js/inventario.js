@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función para cargar productos
     function cargarProductos() {
-        fetch('/Crud_Ventas/controllers/InventarioController.php?action=index')
+        fetch(window.CONTROLLERS_URL + 'InventarioController.php?action=index')
             .then(response => response.json())
             .then(data => {
                 productosOriginal = data; // Guardar productos originales
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Función para búsqueda en servidor (para búsquedas más específicas)
     function buscarProductosServidor(termino) {
-        fetch(`/Crud_Ventas/controllers/InventarioController.php?action=buscar&termino=${encodeURIComponent(termino)}`)
+        fetch(window.CONTROLLERS_URL + `InventarioController.php?action=buscar&termino=${encodeURIComponent(termino)}`)
             .then(response => response.json())
             .then(data => {
                 productosOriginal = data; // Actualizar productos originales
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = new FormData(formProducto);
         const action = productoId.value ? 'actualizar' : 'crear';
         
-        fetch(`/Crud_Ventas/controllers/InventarioController.php?action=${action}`, {
+        fetch(window.CONTROLLERS_URL + `InventarioController.php?action=${action}`, {
             method: 'POST',
             body: formData
         })
@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función para editar producto
     function editarProducto(id) {
-        fetch(`/Crud_Ventas/controllers/InventarioController.php?action=editar&id=${id}`)
+        fetch(window.CONTROLLERS_URL + `InventarioController.php?action=editar&id=${id}`)
             .then(response => response.json())
             .then(producto => {
                 if (producto) {
@@ -204,8 +204,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById('nombre').value = producto.nombre;
                     document.getElementById('descripcion').value = producto.descripcion || '';
                     document.getElementById('precio').value = producto.precio;
+                    document.getElementById('costo').value = producto.costo || '';
                     document.getElementById('stock').value = producto.stock;
                     document.getElementById('categoria').value = producto.categoria || '';
+                    document.getElementById('proveedor').value = producto.proveedor || '';
                     document.getElementById('estado').value = producto.estado;
                     
                     modalTitulo.textContent = 'Editar Producto';
@@ -236,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const formData = new FormData();
                 formData.append('id', id);
                 
-                fetch('/Crud_Ventas/controllers/InventarioController.php?action=eliminar', {
+                fetch(window.CONTROLLERS_URL + 'InventarioController.php?action=eliminar', {
                     method: 'POST',
                     body: formData
                 })

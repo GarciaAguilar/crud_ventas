@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    volumes:
+      - .:/var/www/html
+    environment:
+      - DB_HOST=db
+      - DB_NAME=crud_ventas
+      - DB_USER=root
+      - DB_PASSWORD=root123
+    networks:
+      - app-network
+
+  db:
+    image: mariadb:10.6
+    environment:
+      MYSQL_DATABASE: crud_ventas
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./config/crud_ventas_mariadb.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - app-network
+
+volumes:
+  db_data:
+
+networks:
+  app-network:
+    driver: bridge
