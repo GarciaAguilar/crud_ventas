@@ -22,5 +22,4 @@ cache/
 test_*.php
 check_db.php
 
-# Carpetas del proyecto original
-Crud_VentasD/
+
